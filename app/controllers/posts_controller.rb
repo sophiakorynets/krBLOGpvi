@@ -46,6 +46,6 @@ before_action :set_post, only: [ :show, :edit, :update, :destroy]
         @post = Post.find(params[:id])
     end
     def post_params
-        params.require(:post).permit(:title, :summary, :body, :image)
+        params.require(:post).permit(:title, :summary, :body, :image, :all_tags)
     end
 end
