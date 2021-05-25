@@ -16,9 +16,9 @@ before_action :set_post, only: [ :show, :edit, :update, :destroy]
     def create
         @post = Post.new(post_params)
         if @post.save 
-            redirect_to @post
+            redirect_to @post, success: 'Post successully created'
         else
-            render :new
+            render :new, danger: 'Post isn`t saved'
         end
     end
 
@@ -29,16 +29,16 @@ before_action :set_post, only: [ :show, :edit, :update, :destroy]
     def update
         
         if @post.update(post_params)
-            redirect_to @post
+            redirect_to @post, success: 'Post successully updated'
         else
-            render :edit
+            render :edit, danger: 'Post isn`t updated'
         end
 
     end
 
     def destroy
         @post.destroy
-        redirect_to posts_path
+        redirect_to posts_path, success: 'Post successully deleted'
     end
 
     private
@@ -46,6 +46,6 @@ before_action :set_post, only: [ :show, :edit, :update, :destroy]
         @post = Post.find(params[:id])
     end
     def post_params
-        params.require(:post).permit(:title, :summary, :body)
+        params.require(:post).permit(:title, :summary, :body, :image)
     end
 end
